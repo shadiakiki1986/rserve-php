@@ -24,8 +24,10 @@
     "autoload-dev": {
         "psr-4" : { "Rserve\\" : "tests/Rserve" }
     },
-    "test": [
-        "parallel-lint . --exclude vendor",
-        "phpunit --verbose"
-    ]
+    "scripts": {
+      "test": [
+          "parallel-lint . --exclude vendor",
+          "phpunit --verbose"
+      ]
+    }
 }
