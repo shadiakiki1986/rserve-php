@@ -97,38 +97,15 @@ class Connection {
 	private $encoding;
 
 	/**
-	 * initialization of the library
-	 */
-	public static function init() {
-		if( self::$init ) {
-			return;
-		}
-		$m = pack('s', 1);
-		self::$machine_is_bigendian = ($m[0] == 0);
-		spl_autoload_register('\Rserve\Connection::autoload');
-		self::$init = true;
-	}
-
-	public static function autoload($name) {
-		$s = strtolower(substr($name, 0, 6));
-		if($s != 'rserve') {
-			return false;
-		}
-		$s = substr($name, 7);
-		$s = str_replace('_', '/', $s);
-		$s .= '.php';
-		require $s;
-		return true;
-	}
-
-	/**
 	 *  @param mixed host name or IP or a Rserve_Session instance
 	 *  @param int $port if 0 then host is interpreted as unix socket,
 	 *
 	 */
 	public function __construct($host='127.0.0.1', $port = 6311, $params=array()) {
 		if( !self::$init ) {
-			self::init();
+			$m = pack('s', 1);
+			self::$machine_is_bigendian = ($m[0] == 0);
+			self::$init = true;
 		}
 		if(is_object($host) AND $host instanceof Rserve_Session) {
 			$session = $host->key;
