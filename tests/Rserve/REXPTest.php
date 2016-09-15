@@ -11,7 +11,7 @@ class REXPTest extends \PHPUnit_Framework_TestCase {
 		$cn = '\\Rserve\\REXP\\'.$type;
 		$r = new $cn();
 		if(is_subclass_of($r, '\\Rserve\\REXP\\Vector')) {
-			if( is_subclass_of($r,'\\Rserve\\REXP\\List') AND @$options['named']) {
+			if( is_subclass_of($r,'\\Rserve\\REXP\\RList') AND @$options['named']) {
 				$r->setValues($values, TRUE);
 			} else {
 				$r->setValues($values);

@@ -60,7 +60,7 @@ class Factor extends Integer {
 		return \Rserve\Parser::XT_FACTOR;
 	}
 
-	public function setAttributes(List $attr) {
+	public function setAttributes(RList $attr) {
 		parent::setAttributes($attr);
 		$lev = $this->getAttribute('levels');
 		if( $lev ) {

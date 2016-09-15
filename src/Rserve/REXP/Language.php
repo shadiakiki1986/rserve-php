@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
 * R Language type vector
 */
-class Language extends List {
+class Language extends RList {
 
 	public function isLanguage() {
 		return true;

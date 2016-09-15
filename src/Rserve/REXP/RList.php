@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
  * R List implementation
  */
-class List extends Vector implements ArrayAccess {
+class RList extends Vector implements ArrayAccess {
 
 	protected $names = array();
 	protected $is_named = false;

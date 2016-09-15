@@ -535,14 +535,14 @@ class Parser {
 				while ($i < $eoa) {
 					$v[] = self::parseREXP($buf, $i);
 				}
-				$clasz = ($ra == self::XT_LIST_NOTAG) ? '\Rserve\REXP\List' : '\Rserve\REXP\Language';
+				$clasz = ($ra == self::XT_LIST_NOTAG) ? '\Rserve\REXP\RList' : '\Rserve\REXP\Language';
 				$a = new $clasz();
 				$a->setValues($a);
 				break;
 
 			case self::XT_LIST_TAG:
 			case self::XT_LANG_TAG: // pairlist with tags
-				$clasz = ($ra == self::XT_LIST_TAG) ? '\Rserve\REXP\List' : '\Rserve\REXP\Language';
+				$clasz = ($ra == self::XT_LIST_TAG) ? '\Rserve\REXP\RList' : '\Rserve\REXP\Language';
 				$v = array();
 				$names = array();
 				while ($i < $eoa) {

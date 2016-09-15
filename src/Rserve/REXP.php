@@ -20,7 +20,7 @@ class REXP {
 
 	/**
 	 * List of attributes associated with the R object
-	 * @var \Rserve\REXP\List
+	 * @var \Rserve\REXP\RList
 	 */
 	protected $attr = null;
 
@@ -29,9 +29,9 @@ class REXP {
 
 	/**
 	 * Set attributes for this REXP structure
-	 * @param \Rserve\REXP\List $attr
+	 * @param \Rserve\REXP\RList $attr
 	 */
-	public function setAttributes(\Rserve\REXP\List $attr) {
+	public function setAttributes(\Rserve\REXP\RList $attr) {
 		$this->attr = $attr;
 	}
 
@@ -61,7 +61,7 @@ class REXP {
 
 	/**
 	 * get attributes for this REXP
-	 * @return \Rserve\REXP\List
+	 * @return \Rserve\REXP\RList
 	 */
 	public function attributes() {
 		return $this->attr;
@@ -124,7 +124,7 @@ class REXP {
 	}
 
 	/**
-	 * Is a list (Rserve_Rexp_List)
+	 * Is a list (\Rserve\REXP\RList)
 	 * @return bool
 	 */
 	public function isList() {
