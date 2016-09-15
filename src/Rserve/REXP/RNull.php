@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
 * R Null value
 */
-class Null extends \Rserve\REXP {
+class RNull extends \Rserve\REXP {
 
 	public function isList() {
 		return true;

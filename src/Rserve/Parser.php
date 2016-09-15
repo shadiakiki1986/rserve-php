@@ -500,7 +500,7 @@ class Parser {
 
 		switch($ra) {
 			case self::XT_NULL:
-				$a =  new \Rserve\REXP\Null();
+				$a =  new \Rserve\REXP\RNull();
 				break;
 
 			case self::XT_VECTOR: // generic vector
@@ -787,7 +787,7 @@ class Parser {
 				while($i < $n) {
 					$x = $l[$i];
 					if( is_null($x) ) {
-						$x = new \Rserve\REXP\Null();
+						$x = new \Rserve\REXP\RNull();
 					}
 					$iof = strlen($contents);
 					$contents .= self::createBinary($x);
