@@ -24,7 +24,7 @@ class Rserve_REXP_Null extends Rserve_REXP {
 	}
 
 	public function getType() {
-		return Rserve_Parser::XT_NULL;
+		return \Rserve\Parser::XT_NULL;
 	}
 
 }

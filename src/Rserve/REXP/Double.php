@@ -36,6 +36,6 @@ class Rserve_REXP_Double extends Rserve_REXP_Vector {
 	 * @see Rserve_REXP_Vector::getType()
 	 */
 	public function getType() {
-		return Rserve_Parser::XT_ARRAY_DOUBLE;
+		return \Rserve\Parser::XT_ARRAY_DOUBLE;
 	}
 }

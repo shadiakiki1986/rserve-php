@@ -57,7 +57,7 @@ class Rserve_REXP_Factor extends Rserve_REXP_Integer {
 	}
 
 	public function getType() {
-		return Rserve_Parser::XT_FACTOR;
+		return \Rserve\Parser::XT_FACTOR;
 	}
 
 	public function setAttributes(Rserve_REXP_List $attr) {

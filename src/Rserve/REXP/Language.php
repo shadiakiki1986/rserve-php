@@ -20,7 +20,7 @@ class Rserve_REXP_Language extends Rserve_REXP_List {
 	}
 
 	public function getType() {
-		return Rserve_Parser::XT_LANG;
+		return \Rserve\Parser::XT_LANG;
 	}
 
 }

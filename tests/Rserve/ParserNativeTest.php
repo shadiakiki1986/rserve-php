@@ -20,7 +20,7 @@ class ParserNativeTest extends RserveTestCase {
 	 * @param string $type expected type
 	 * @param array $expected expected php structure
 	 * @param array $filters filters to apply to the R result to fit the tests values, each filter is array(funcname, param1,...), or a string funcname|param1|param2...
-	 * @covers Rserve_Parser::parse
+	 * @covers \Rserve\Parser::parse
 	 * @covers \Rserve\Connection::evalString
 	 */
 	public function testSimpleTypes($cmd, $type, $expected, $filters=NULL) {

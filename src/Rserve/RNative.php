@@ -58,7 +58,7 @@ class Rserve_RNative implements ArrayAccess {
 	}
 
 	/**
-	 * Type of the parsed expression (vector, list, etc) (@see Rserve_Parser::xtName())
+	 * Type of the parsed expression (vector, list, etc) (@see \Rserve\Parser::xtName())
 	 */
 	public function getType() {
 		return $this->type;

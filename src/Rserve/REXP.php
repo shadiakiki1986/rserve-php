@@ -12,7 +12,7 @@ namespace Rserve;
 /**
 * R Expression wrapper
 *
-* Each R structure returned by Rserve are wrapped in an REXP class regarding its type (@see Rserve_Parser::xtName())
+* Each R structure returned by Rserve are wrapped in an REXP class regarding its type (@see \Rserve\Parser::xtName())
 *
 */
 
@@ -182,19 +182,19 @@ class Rserve_REXP {
 		}
 		$type = $this->getType();
 		switch($type) {
-			case Rserve_Parser::XT_ARRAY_BOOL:
+			case \Rserve\Parser::XT_ARRAY_BOOL:
 				$class = 'logical';
 				break;
-			case Rserve_Parser::XT_ARRAY_INT:
+			case \Rserve\Parser::XT_ARRAY_INT:
 				$class = 'integer';
 				break;
-			case Rserve_Parser::XT_ARRAY_DOUBLE:
+			case \Rserve\Parser::XT_ARRAY_DOUBLE:
 				$class = 'numeric';
 				break;
-			case Rserve_Parser::XT_ARRAY_STR:
+			case \Rserve\Parser::XT_ARRAY_STR:
 				$class ='character';
 				break;
-			case Rserve_Parser::XT_FACTOR:
+			case \Rserve\Parser::XT_FACTOR:
 				$class = 'factor';
 				break;
 			default:
@@ -208,7 +208,7 @@ class Rserve_REXP {
 	 * For debugging purpose
 	 */
 	public function toHTML() {
-		return '<div class="rexp xt_'.$this->getType().'"><span class="typename">'.Rserve_Parser::xtName($this->getType()).'</span>'.$this->attrToHTML().'</div>';
+		return '<div class="rexp xt_'.$this->getType().'"><span class="typename">'.\Rserve\Parser::xtName($this->getType()).'</span>'.$this->attrToHTML().'</div>';
 	}
 
 	protected function attrToHTML() {
@@ -218,11 +218,11 @@ class Rserve_REXP {
 	}
 
 	/**
-	 * Get R Type (@see Rserve_Parser)
+	 * Get R Type (@see \Rserve\Parser)
 	 * @return int
 	 */
 	public function getType() {
-		return Rserve_Parser::XT_VECTOR;
+		return \Rserve\Parser::XT_VECTOR;
 	}
 
 }

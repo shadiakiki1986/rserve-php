@@ -69,14 +69,14 @@ class Rserve_REXP_Vector extends Rserve_REXP {
 	}
 	
 	public function getType() {
-		return Rserve_Parser::XT_VECTOR;
+		return \Rserve\Parser::XT_VECTOR;
 	}
 	
 	public function toHTML() {
 		$s = '<div class="rexp vector xt_'.$this->getType().'">';
 		$dim = $this->dim();
 		$n = $this->length();
-		$s .= '<span class="typename">'.Rserve_Parser::xtName($this->getType()).'</span>';
+		$s .= '<span class="typename">'.\Rserve\Parser::xtName($this->getType()).'</span>';
 		$s .= '[';
 		$s .= join(',', $dim);
 		$s .= ']';

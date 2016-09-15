@@ -20,7 +20,7 @@ class Rserve_REXP_String extends Rserve_REXP_Vector {
 	}
 	
 	public function getType() {
-		return Rserve_Parser::XT_ARRAY_STR;
+		return \Rserve\Parser::XT_ARRAY_STR;
 	}
 	
 	protected function valueToHTML($v) {

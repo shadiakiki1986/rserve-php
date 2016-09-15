@@ -8,7 +8,7 @@
 
 namespace Rserve;
 
-class Rserve_Parser {
+class Parser {
 
 	/** xpression type: NULL */
 	const XT_NULL =  0;

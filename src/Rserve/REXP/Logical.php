@@ -28,7 +28,7 @@ class Rserve_REXP_Logical extends Rserve_REXP_Vector {
 	}
 	
 	public function getType() {
-		return Rserve_Parser::XT_ARRAY_BOOL;
+		return \Rserve\Parser::XT_ARRAY_BOOL;
 	}
 	
 }

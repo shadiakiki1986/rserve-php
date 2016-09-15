@@ -34,16 +34,16 @@ function testBinary($cnx, $values, $type, $options = array(), $msg = '') {
 
 	$rexp = create_REXP($values, $type, $options);
 
-	$bin = Rserve_Parser::createBinary($rexp);
+	$bin = \Rserve\Parser::createBinary($rexp);
 	//var_dump($bin);
 
 	$i = 0;
 	echo "Debug REXP".CLI_EOL;
-	var_dump(Rserve_Parser::parseDebug($bin, $i));
+	var_dump(\Rserve\Parser::parseDebug($bin, $i));
 
 	$i = 0;
 	echo "binary to REXP".CLI_EOL;
-	$r2 = Rserve_Parser::parseREXP($bin, $i);
+	$r2 = \Rserve\Parser::parseREXP($bin, $i);
 	var_dump($r2);
 
 	$cn2 = get_class($r2);

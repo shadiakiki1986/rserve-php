@@ -30,11 +30,11 @@ class Rserve_REXP_Symbol extends Rserve_REXP {
 	}
 
 	public function getType() {
-		return Rserve_Parser::XT_SYM;
+		return \Rserve\Parser::XT_SYM;
 	}
 
 	public function toHTML() {
-	 return '<div class="rexp xt_'.$this->getType().'"><span class="typename">'.Rserve_Parser::xtName($this->getType()).'</span>'.$this->name.$this->attrToHTML().'</div>';
+	 return '<div class="rexp xt_'.$this->getType().'"><span class="typename">'.\Rserve\Parser::xtName($this->getType()).'</span>'.$this->name.$this->attrToHTML().'</div>';
 	}
 
 	public function __toString() {

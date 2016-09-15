@@ -4,7 +4,7 @@ namespace Rserve;
 
 require_once __DIR__ . '/../config.php';
 
-class SessionTest extends PHPUnit_Framework_TestCase {
+class REXPTest extends \PHPUnit_Framework_TestCase {
 
 
 	private function create_REXP($values, $type, $options=array()) {
@@ -40,11 +40,11 @@ class SessionTest extends PHPUnit_Framework_TestCase {
 	public function testParser($type, $values) {
 		$rexp = $this->create_REXP($values, $type);
 
-		$bin = Rserve_Parser::createBinary($rexp);
+		$bin = \Rserve\Parser::createBinary($rexp);
 
 		$i = 0; // No offset
 		
-		$r2 = Rserve_Parser::parseREXP($bin, $i);
+		$r2 = \Rserve\Parser::parseREXP($bin, $i);
 
 		$this->assertEquals( get_class($rexp), get_class($r2));
 

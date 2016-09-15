@@ -17,7 +17,7 @@ class Rserve_REXP_Factor extends Rserve_REXP_GenericVector {
 	}
 	
 	public function getType() {
-		return Rserve_Parser::XT_VECTOR_EXP;
+		return \Rserve\Parser::XT_VECTOR_EXP;
 	}
 	
 }

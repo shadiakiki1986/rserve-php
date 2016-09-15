@@ -117,9 +117,9 @@ class Rserve_REXP_List extends Rserve_REXP_Vector implements ArrayAccess {
 
 	public function getType() {
 		if( $this->isNamed() ) {
-			return Rserve_Parser::XT_LIST_TAG;
+			return \Rserve\Parser::XT_LIST_TAG;
 		} else {
-			return Rserve_Parser::XT_LIST_NOTAG;
+			return \Rserve\Parser::XT_LIST_NOTAG;
 		}
 	}
 

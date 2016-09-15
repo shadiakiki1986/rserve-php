@@ -37,7 +37,7 @@ class Rserve_REXP_Raw extends Rserve_REXP {
 	}
 	
 	public function getType() {
-		return Rserve_Parser::XT_RAW;
+		return \Rserve\Parser::XT_RAW;
 	}
 	
 	public function toHTML() {

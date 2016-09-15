@@ -229,19 +229,19 @@ class Connection {
 		$r = null;
 		switch($parser) {
 			case self::PARSER_NATIVE:
-				$r = Rserve_Parser::parse($buf, $i);
+				$r = \Rserve\Parser::parse($buf, $i);
 				break;
 			case self::PARSER_REXP:
-				$r = Rserve_Parser::parseREXP($buf, $i);
+				$r = \Rserve\Parser::parseREXP($buf, $i);
 				break;
 			case self::PARSER_DEBUG:
-				$r = Rserve_Parser::parseDebug($buf, $i);
+				$r = \Rserve\Parser::parseDebug($buf, $i);
 				break;
 			case self::PARSER_NATIVE_WRAPPED:
-				$old = Rserve_Parser::$use_array_object;
-				Rserve_Parser::$use_array_object = true;
-				$r = Rserve_Parser::parse($buf, $i);
-				Rserve_Parser::$use_array_object = $old;
+				$old = \Rserve\Parser::$use_array_object;
+				\Rserve\Parser::$use_array_object = true;
+				$r = \Rserve\Parser::parse($buf, $i);
+				\Rserve\Parser::$use_array_object = $old;
 				break;
 			default:
 				throw new \Rserve\Exception('Unknown parser');
@@ -328,7 +328,7 @@ class Connection {
 	public function assign($symbol, Rserve_REXP $value) {
 		$symbol = (string)$symbol;
 		$data = Helpers::_rserve_make_data(self::DT_STRING, $symbol);
-		$bin = Rserve_Parser::createBinary($value);
+		$bin = \Rserve\Parser::createBinary($value);
 		$data .= Helpers::_rserve_make_data(self::DT_SEXP, $bin);
 		$r = $this->sendCommand(self::CMD_assignSEXP, $data);
 		return $r;
@@ -569,23 +569,3 @@ class Rserve_Session {
 
 }
 
-/**
- * RServe Exception
- * @author Clément Turbelin
- *
- */
-class Exception extends \Exception {
-
-	public $packet;
-
-	public function __construct($message, $packet=null) {
-		parent::__construct($message);
-		$this->packet = $packet;
-	}
-
-}
-
-class Rserve_Parser_Exception extends \Rserve\Exception {
-}
-
-\Rserve\Connection::init();
