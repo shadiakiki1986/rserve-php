@@ -5,6 +5,9 @@ services:
 
 language: php
 
+php:
+- 7
+
 before_install:
 - composer install
 - cp tests/config.php.sample tests/config.php
