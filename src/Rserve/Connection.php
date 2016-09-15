@@ -97,7 +97,7 @@ class Connection {
 	private $encoding;
 
 	/**
-	 *  @param mixed host name or IP or a Rserve_Session instance
+	 *  @param mixed host name or IP or a \Rserve\Session instance
 	 *  @param int $port if 0 then host is interpreted as unix socket,
 	 *
 	 */
@@ -107,7 +107,7 @@ class Connection {
 			self::$machine_is_bigendian = ($m[0] == 0);
 			self::$init = true;
 		}
-		if(is_object($host) AND $host instanceof Rserve_Session) {
+		if(is_object($host) AND $host instanceof \Rserve\Session) {
 			$session = $host->key;
 			$this->port = $host->port;
 			$host = $host->host;
@@ -313,7 +313,7 @@ class Connection {
 
 			$port  =  Helpers::int32($x, 4);
 			$key = substr($x, 12);
-			$session = new Rserve_Session($key, $this->host, $port);
+			$session = new \Rserve\Session($key, $this->host, $port);
 
 			return $session;
 		}
@@ -531,40 +531,6 @@ class Connection {
 				$m = 'unknown error';
 		}
 		return $m;
-	}
-
-}
-
-/**
- * R Session wrapper
- * @author Clément Turbelin
- *
- */
-class Rserve_Session {
-
-	/**
-	 * Session key
-	 * @var string
-	 */
-	public $key;
-
-	/**
-	 *
-	 * @var int
-	 */
-	public $port;
-
-	public $host;
-
-	public function __construct($key, $host, $port) {
-		$this->key = $key;
-		$this->port = $port;
-		$this->host = $host;
-	}
-
-	public function __toString() {
-		$k = base64_encode($this->key);
-		return sprintf('Session %s:%d identified by base64:%s', $this->host, $this->port, $k);
 	}
 
 }
