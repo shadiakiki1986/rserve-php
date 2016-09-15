@@ -1,9 +1,11 @@
 <?php
+
+namespace Rserve;
+
 /**
 * Rserve-php example
 */
-require_once __DIR__ . '/config.php';
-require __DIR__ . '/../Connection.php';
+require_once __DIR__ . '/../config.php';
 require __DIR__ . '/Definition.php';
 
 $test_cases = Rserve_Tests_Definition::$native_tests;
@@ -21,9 +23,13 @@ function mydump($x, $title=NULL) {
 
 try {
 
+  if(!defined("RSERVE_HOST")) {
+    throw new \Exception("Need to define php constant in tests/config.php: RSERVE_HOST");
+  }
+
 	echo '<div id="tab_0" class="tab">';
 	echo '<p>Connecting to Rserve '.RSERVE_HOST;
-	$r = new Rserve_Connection(RSERVE_HOST);
+	$r = new \Rserve\Connection(RSERVE_HOST);
 	echo ' OK</p>';
 
 	echo '<p>Use the above menu to see results for various results using each kind of parser</p>';
@@ -36,16 +42,16 @@ try {
 
 	//mydump($x);
 
-	$x = $r->evalString('chisq.test(table(a,b))', Rserve_Connection::PARSER_REXP);
+	$x = $r->evalString('chisq.test(table(a,b))', \Rserve\Connection::PARSER_REXP);
 
 	echo $x->toHTML();
 	echo '</div>';
 
 	$parsers = array(
-		Rserve_Connection::PARSER_NATIVE=>'native ',
-		Rserve_Connection::PARSER_NATIVE_WRAPPED=>' wrapped native (RNative)',
-		Rserve_Connection::PARSER_DEBUG=>'Parser Debug',
-		Rserve_Connection::PARSER_REXP=>'REXP',
+		\Rserve\Connection::PARSER_NATIVE=>'native ',
+		\Rserve\Connection::PARSER_NATIVE_WRAPPED=>' wrapped native (RNative)',
+		\Rserve\Connection::PARSER_DEBUG=>'Parser Debug',
+		\Rserve\Connection::PARSER_REXP=>'REXP',
 	);
 
 	$i = 1;
@@ -68,7 +74,7 @@ try {
 	echo '<div id="tab_'.$i.'" class="tab">';
 	echo '<h2>Dataframe</h2>';
 	$cmd = 'data.frame(sexe=c("F","M","F","M"), age=c(10,22,23,44), weight=c(20,55,60,67))';
-	$x = $r->evalString($cmd, Rserve_Connection::PARSER_REXP);
+	$x = $r->evalString($cmd, \Rserve\Connection::PARSER_REXP);
 
 	mydump($x, 'REXP object');
 
@@ -89,13 +95,13 @@ try {
 	echo '<div id="tab_'.$i.'" class="tab">';
 	echo '<h2>Complex</h2>';
 	$cmd = 'x = 1:10 + rnorm(10)*1i';
-	$x = $r->evalString($cmd, Rserve_Connection::PARSER_REXP);
+	$x = $r->evalString($cmd, \Rserve\Connection::PARSER_REXP);
 
 	mydump($x, 'REXP object');
 
 	echo $x->toHTML();
 
-	$x = $r->evalString($cmd, Rserve_Connection::PARSER_NATIVE);
+	$x = $r->evalString($cmd, \Rserve\Connection::PARSER_NATIVE);
 
 	mydump($x,'Native');
 

@@ -1,8 +1,9 @@
 <?php
+
 define('RSERVE_HOST','localhost');
+define('RSERVE_PORT', 1234);
 
 // Used in LoginTest.php
-define('RSERVE_PORT', 1234);
 define('RSERVE_USER','user');
 define('RSERVE_PASS','pass');
 	

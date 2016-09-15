@@ -1,14 +1,12 @@
 <?php
 
-require_once __DIR__ . '/config.php';
-require_once __DIR__ . '/../Connection.php';
+namespace Rserve;
 
-class SessionTest extends PHPUnit_Framework_TestCase {
+require_once __DIR__ . '/../config.php';
 
+class SessionTest extends RserveTestCase {
 
 	public function testSession() {
-		$cnx = new Rserve_Connection(RSERVE_HOST);
-
 		// random id
 		$random = '';
 		for($i = 0; $i < 10; ++$i) {
@@ -16,13 +14,13 @@ class SessionTest extends PHPUnit_Framework_TestCase {
 		}
 		$random_id = uniqid($random, TRUE);
 
-		$r = $cnx->evalString('x="'.$random_id.'"');
+		$r = $this->rserve->evalString('x="'.$random_id.'"');
 
 		$this->assertEquals($r, $random_id);
 
-		$session = $cnx->detachSession();
+		$session = $this->rserve->detachSession();
 
-		$cnx = new Rserve_Connection($session);
+		$cnx = new \Rserve\Connection($session);
 
 		$x = $cnx->evalString('x');
 

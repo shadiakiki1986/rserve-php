@@ -1,4 +1,7 @@
 <?php
+
+namespace Rserve;
+
 /**
 * Tests Definition
 */

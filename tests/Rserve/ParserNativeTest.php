@@ -1,25 +1,11 @@
 <?php
 
-require_once __DIR__ . '/config.php';
-require_once __DIR__ . '/../Connection.php';
+namespace Rserve;
+
+require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/Definition.php';
 
-class ParserNativeTest extends PHPUnit_Framework_TestCase {
-
-	private static $cnx;
-
-	/**
-	 * Sets up the fixture, for example, open a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
-	protected function setUp() {
-		if(!self::$cnx) {
-			self::$cnx = new Rserve_Connection(RSERVE_HOST);
-		}
-		$this->rserve = self::$cnx;
-	}
+class ParserNativeTest extends RserveTestCase {
 
 	/**
 	 * Provider for test cases
@@ -35,7 +21,7 @@ class ParserNativeTest extends PHPUnit_Framework_TestCase {
 	 * @param array $expected expected php structure
 	 * @param array $filters filters to apply to the R result to fit the tests values, each filter is array(funcname, param1,...), or a string funcname|param1|param2...
 	 * @covers Rserve_Parser::parse
-	 * @covers Rserve_Connection::evalString
+	 * @covers \Rserve\Connection::evalString
 	 */
 	public function testSimpleTypes($cmd, $type, $expected, $filters=NULL) {
 		$r = $this->rserve->evalString($cmd);

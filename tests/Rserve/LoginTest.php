@@ -1,17 +1,26 @@
 <?php
 
+namespace Rserve;
+
 /*
  * Refer to README for how to run this test
  */
 
-require_once __DIR__ . '/config.php';
-require_once __DIR__ . '/../Connection.php';
+require_once __DIR__ . '/../config.php';
 
-class LoginTest extends PHPUnit_Framework_TestCase {
+class LoginTest extends RserveTestCase {
 
 	public function testLogin() {
 
-		$cnx = new Rserve_Connection(RSERVE_HOST,RSERVE_PORT,
+    foreach(array("RSERVE_PORT","RSERVE_USER","RSERVE_PASS") as $field) {
+      if(!defined($field)) {
+        $this->markTestSkipped("Need to define php constant in tests/config.php: $field");
+      }
+    }
+
+		$cnx = new \Rserve\Connection(
+      RSERVE_HOST,
+      RSERVE_PORT,
 			array('username'=>RSERVE_USER,'password'=>RSERVE_PASS)
 		);
 

@@ -4,9 +4,9 @@
 * Work in progress...
 */
 
-require __DIR__ . '/../Connection.php';
+namespace Rserve;
 
-require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/../config.php';
 
 define('CLI_EOL',"\n");
 
@@ -67,7 +67,7 @@ function testBinary($cnx, $values, $type, $options = array(), $msg = '') {
 	var_dump($r);
 }
 
-$cnx = new Rserve_Connection('localhost', 6311, TRUE);
+$cnx = new \Rserve\Connection('localhost', 6311, TRUE);
 
 testBinary($cnx, array(1,2,3), 'Integer'  );
 
