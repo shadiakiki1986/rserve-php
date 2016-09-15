@@ -3,6 +3,8 @@ sudo: required
 services:
 - docker
 
+language: php
+
 before_install:
 - composer install
 - cp tests/config.php.sample tests/config.php
@@ -10,3 +12,6 @@ before_install:
 
 script:
 - composer test
+
+after_success:
+- docker ps|grep rserve|awk '{print "docker stop " $1}'|bash
