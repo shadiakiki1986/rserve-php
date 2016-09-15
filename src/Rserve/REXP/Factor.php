@@ -15,7 +15,7 @@ namespace Rserve\REXP;
 * A factor is an integer value associated with a label (level in R vocabulary)
 * Caution: first level is coded as a 1 value
 */
-class Rserve_REXP_Factor extends Rserve_REXP_Integer {
+class Factor extends Integer {
 
 	protected $levels;
 
@@ -35,7 +35,7 @@ class Rserve_REXP_Factor extends Rserve_REXP_Integer {
 	 * Set levels from
 	 */
 	public function setLevels($levels) {
-		if($levels instanceof Rserve_REXP_String) {
+		if($levels instanceof String) {
 			$levels = $levels->getValues();
 		}
 		$this->levels = $levels;
@@ -43,7 +43,7 @@ class Rserve_REXP_Factor extends Rserve_REXP_Integer {
 
 	/**
 	 * Convert an levels encoded vector to a character vector
-	 * @return Rserve_REXP
+	 * @return \Rserve\REXP
 	 */
 	public function asCharacter() {
 		$levels = $this->levels;
@@ -51,7 +51,7 @@ class Rserve_REXP_Factor extends Rserve_REXP_Integer {
 		foreach($this->values as $v) {
 			$r[] = $levels[$v];
 		}
-		$rexp = new Rserve_REXP_String();
+		$rexp = new String();
 		$rexp->setValues($r);
 		return $$rexp;
 	}
@@ -60,7 +60,7 @@ class Rserve_REXP_Factor extends Rserve_REXP_Integer {
 		return \Rserve\Parser::XT_FACTOR;
 	}
 
-	public function setAttributes(Rserve_REXP_List $attr) {
+	public function setAttributes(List $attr) {
 		parent::setAttributes($attr);
 		$lev = $this->getAttribute('levels');
 		if( $lev ) {

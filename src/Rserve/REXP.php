@@ -16,11 +16,11 @@ namespace Rserve;
 *
 */
 
-class Rserve_REXP {
+class REXP {
 
 	/**
 	 * List of attributes associated with the R object
-	 * @var Rserve_REXP_List
+	 * @var \Rserve\REXP\List
 	 */
 	protected $attr = null;
 
@@ -29,15 +29,15 @@ class Rserve_REXP {
 
 	/**
 	 * Set attributes for this REXP structure
-	 * @param Rserve_REXP_List $attr
+	 * @param \Rserve\REXP\List $attr
 	 */
-	public function setAttributes(Rserve_REXP_List $attr) {
+	public function setAttributes(\Rserve\REXP\List $attr) {
 		$this->attr = $attr;
 	}
 
 	/**
 	 * Check if an attribute exists for a given name
-	 * @param Rserve_REXP $name
+	 * @param REXP $name
 	 * @return bool
 	 */
 	public function hasAttribute($name) {
@@ -49,8 +49,8 @@ class Rserve_REXP {
 
 	/**
 	 * Get an attribute
-	 * @param Rserve_REXP $name
-	 * @return Rserve_REXP
+	 * @param REXP $name
+	 * @return REXP
 	 */
 	public function getAttribute($name) {
 		if( !$this->attr ) {
@@ -61,7 +61,7 @@ class Rserve_REXP {
 
 	/**
 	 * get attributes for this REXP
-	 * @return Rserve_REXP_List
+	 * @return \Rserve\REXP\List
 	 */
 	public function attributes() {
 		return $this->attr;

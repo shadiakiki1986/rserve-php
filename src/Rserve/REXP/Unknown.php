@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
 * wrapper for R Unknown type
 */
-class Rserve_REXP_Unknown extends Rserve_REXP {
+class Unknown extends \Rserve\REXP {
 	
 	protected $unknowntype;
 	

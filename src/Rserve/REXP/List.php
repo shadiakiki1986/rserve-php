@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
  * R List implementation
  */
-class Rserve_REXP_List extends Rserve_REXP_Vector implements ArrayAccess {
+class List extends Vector implements ArrayAccess {
 
 	protected $names = array();
 	protected $is_named = false;
@@ -65,7 +65,7 @@ class Rserve_REXP_List extends Rserve_REXP_Vector implements ArrayAccess {
 	/**
 	 * Get the value for a given name entry, if list is not named, get the indexed element
 	 * @param string $name
-	 * @return Rserve_REXP|mixed
+	 * @return \Rserve\REXP|mixed
 	 */
 	public function at($name) {
 		if( $this->is_named ) {
@@ -80,7 +80,7 @@ class Rserve_REXP_List extends Rserve_REXP_Vector implements ArrayAccess {
 	/**
 	 * Return element at the index $i
 	 * @param int $i
-	 * @return mixed Rserve_REXP or native value
+	 * @return mixed \Rserve\REXP or native value
 	 */
 	public function atIndex($i) {
 		$i = (int)$i;
@@ -133,7 +133,7 @@ class Rserve_REXP_List extends Rserve_REXP_Vector implements ArrayAccess {
 			$idx = ($is_named) ? $this->names[$i] : $i;
 			$s .= '<div class="name">'.$idx.'</div>:<div class="value">';
 			$v = $this->values[$i];
-			if(is_object($v) AND ($v instanceof Rserve_REXP)) {
+			if(is_object($v) AND ($v instanceof \Rserve\REXP)) {
 				$s .= $v->toHTML();
 			} else {
 				$s .= (string)$v;

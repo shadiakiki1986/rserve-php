@@ -13,11 +13,11 @@ namespace Rserve\REXP;
 /**
 * R Double vector
 */
-class Rserve_REXP_Double extends Rserve_REXP_Vector {
+class Double extends Vector {
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see Rserve_REXP::isInteger()
+	 * @see \Rserve\REXP::isInteger()
 	 */
 	public function isInteger() { 
 		return false; 
@@ -25,7 +25,7 @@ class Rserve_REXP_Double extends Rserve_REXP_Vector {
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see Rserve_REXP::isNumeric()
+	 * @see \Rserve\REXP::isNumeric()
 	 */
 	public function isNumeric() { 
 		return true; 
@@ -33,7 +33,7 @@ class Rserve_REXP_Double extends Rserve_REXP_Vector {
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see Rserve_REXP_Vector::getType()
+	 * @see Vector::getType()
 	 */
 	public function getType() {
 		return \Rserve\Parser::XT_ARRAY_DOUBLE;

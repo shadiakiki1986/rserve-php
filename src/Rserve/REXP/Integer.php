@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
 * R Integer vector
 */
-class Rserve_REXP_Integer extends Rserve_REXP_Vector {
+class Integer extends Vector {
 
 	public function isInteger() {
 		return true;

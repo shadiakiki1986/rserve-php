@@ -10,7 +10,7 @@ namespace Rserve\REXP;
 * This code is inspired from Java client for Rserve (Rserve package v0.6.2) developped by Simon Urbanek(c)
 */
 
-class Rserve_REXP_Factor extends Rserve_REXP_GenericVector {
+class Factor extends GenericVector {
 	
 	public function isExpression() { 
 		return true; 

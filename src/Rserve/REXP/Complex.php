@@ -8,7 +8,7 @@ namespace Rserve\REXP;
  * @author Clément Turbelin
  *
  */
-class Rserve_REXP_Complex extends Rserve_REXP_Vector {
+class Complex extends Vector {
 
 
 	protected function getCplx($index, $part) {
@@ -46,7 +46,7 @@ class Rserve_REXP_Complex extends Rserve_REXP_Vector {
 
 	/**
 	 * (non-PHPdoc)
-	 * @see Rserve_REXP_Vector::valueToHTML()
+	 * @see Vector::valueToHTML()
 	 */
 	protected function valueToHTML($v) {
 		return $v[0]+' + '.$v[1].'i';

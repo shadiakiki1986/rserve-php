@@ -323,9 +323,9 @@ class Connection {
 	/**
 	 * Assign a value to a symbol in R
 	 * @param string $symbol name of the variable to set (should be compliant with R syntax !)
-	 * @param Rserve_REXP $value value to set
+	 * @param \Rserve\REXP $value value to set
 	 */
-	public function assign($symbol, Rserve_REXP $value) {
+	public function assign($symbol, \Rserve\REXP $value) {
 		$symbol = (string)$symbol;
 		$data = Helpers::_rserve_make_data(self::DT_STRING, $symbol);
 		$bin = \Rserve\Parser::createBinary($value);

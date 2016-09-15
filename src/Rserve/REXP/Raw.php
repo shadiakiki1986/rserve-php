@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
 * R Raw data
 */
-class Rserve_REXP_Raw extends Rserve_REXP {
+class Raw extends \Rserve\REXP {
 	
 	protected $value;
 	

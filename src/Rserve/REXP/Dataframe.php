@@ -2,7 +2,7 @@
 
 namespace Rserve\REXP;
 
-class Rserve_REXP_Dataframe extends Rserve_REXP_Vector {
+class Dataframe extends Vector {
 
 	/**
 	 * R names() => columns names

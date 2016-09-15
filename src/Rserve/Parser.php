@@ -500,7 +500,7 @@ class Parser {
 
 		switch($ra) {
 			case self::XT_NULL:
-				$a =  new Rserve_REXP_Null();
+				$a =  new \Rserve\REXP\Null();
 				break;
 
 			case self::XT_VECTOR: // generic vector
@@ -509,10 +509,10 @@ class Parser {
 					$v[] = self::parseREXP($buf, $i);
 				}
 
-				$klass = 'Rserve_REXP_GenericVector';
+				$klass = '\Rserve\REXP\GenericVector';
 				if( $class ) {
 					if( in_array('data.frame', $class) ) {
-						$klass = 'Rserve_REXP_Dataframe';
+						$klass = '\Rserve\REXP\Dataframe';
 					}
 				}
 				$a = new $klass();
@@ -525,7 +525,7 @@ class Parser {
 					$i++;
 				}
 				$v =  substr($buf, $oi, $i - $oi);
-				$a = new Rserve_REXP_Symbol();
+				$a = new \Rserve\REXP\Symbol();
 				$a->setValue($v);
 				break;
 
@@ -535,14 +535,14 @@ class Parser {
 				while ($i < $eoa) {
 					$v[] = self::parseREXP($buf, $i);
 				}
-				$clasz = ($ra == self::XT_LIST_NOTAG) ? 'Rserve_REXP_List' : 'Rserve_REXP_Language';
+				$clasz = ($ra == self::XT_LIST_NOTAG) ? '\Rserve\REXP\List' : '\Rserve\REXP\Language';
 				$a = new $clasz();
 				$a->setValues($a);
 				break;
 
 			case self::XT_LIST_TAG:
 			case self::XT_LANG_TAG: // pairlist with tags
-				$clasz = ($ra == self::XT_LIST_TAG) ? 'Rserve_REXP_List' : 'Rserve_REXP_Language';
+				$clasz = ($ra == self::XT_LIST_TAG) ? '\Rserve\REXP\List' : '\Rserve\REXP\Language';
 				$v = array();
 				$names = array();
 				while ($i < $eoa) {
@@ -560,10 +560,10 @@ class Parser {
 					$v[] = Helpers::int32($r, $i);
 					$i += 4;
 				}
-				$klass = 'Rserve_REXP_Integer';
+				$klass = '\Rserve\REXP\Integer';
 				if( $class ) {
 					if( in_array('factor', $class) ) {
-						$klass = 'Rserve_REXP_Factor';
+						$klass = '\Rserve\REXP\Factor';
 					}
 				}
 				$a = new $klass();
@@ -576,7 +576,7 @@ class Parser {
 					$v[] = Helpers::flt64($r, $i);
 					$i += 8;
 				}
-				$a = new Rserve_REXP_Double();
+				$a = new \Rserve\REXP\Double();
 				$a->setValues($v);
 				break;
 
@@ -590,7 +590,7 @@ class Parser {
 					}
 					$i++;
 				}
-				$a = new Rserve_REXP_String();
+				$a = new \Rserve\REXP\String();
 				$a->setValues($v);
 				break;
 
@@ -604,7 +604,7 @@ class Parser {
 					$vv[$k] = ($v == 1) ? true : (($v == 0) ? false : null);
 					$k++;
 				}
-				$a = new Rserve_REXP_Logical();
+				$a = new \Rserve\REXP\Logical();
 				$a->setValues($vv);
 				break;
 
@@ -612,7 +612,7 @@ class Parser {
 				$len = Helpers::int32($r, $i);
 				$i += 4;
 				$v = substr($r, $i, $len);
-				$a = new Rserve_REXP_Raw();
+				$a = new \Rserve\REXP\Raw();
 				$a->setValue($v);
 				break;
 
@@ -625,7 +625,7 @@ class Parser {
 					$i += 8;
 					$v[] = array($real, $im);
 				}
-				$a = new Rserve_REXP_Complex();
+				$a = new \Rserve\REXP\Complex();
 				$a->setValues($v);
 				break;
 			/*
@@ -637,7 +637,7 @@ class Parser {
 			*/
 			default:
 				// handle unknown type
-				$a = new Rserve_REXP_Unknown($ra);
+				$a = new \Rserve\REXP\Unknown($ra);
 		}
 		if( $attr && is_object($a) ) {
 			$a->setAttributes($attr);
@@ -679,10 +679,10 @@ class Parser {
 
 	/**
 	 *
-	 * @param Rserve_REXP $value
+	 * @param \Rserve\REXP $value
 	 * This function is not functionnal. Please use it only for testing
 	 */
-	public static function createBinary(Rserve_REXP $value) {
+	public static function createBinary(\Rserve\REXP $value) {
 		// Current offset
 		$o = 0; // Init with header size
 		$contents = '';
@@ -787,12 +787,12 @@ class Parser {
 				while($i < $n) {
 					$x = $l[$i];
 					if( is_null($x) ) {
-						$x = new Rserve_REXP_Null();
+						$x = new \Rserve\REXP\Null();
 					}
 					$iof = strlen($contents);
 					$contents .= self::createBinary($x);
 					if($type == XT_LIST_TAG || $type == XT_LANG_TAG) {
-						$sym = new Rserve_REXP_Symbol();
+						$sym = new \Rserve\REXP\Symbol();
 						$sym->setValue($names[$i]);
 						$contents .= self::createBinary($sym);
 					}

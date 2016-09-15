@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
 * R character vector
 */
-class Rserve_REXP_String extends Rserve_REXP_Vector {
+class RString extends Vector {
 
 	public function isString() { 
 		return true; 

@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
 * R symbol element
 */
-class Rserve_REXP_Symbol extends Rserve_REXP {
+class Symbol extends \Rserve\REXP {
 
 	protected $name;
 

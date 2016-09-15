@@ -8,10 +8,10 @@ class REXPTest extends \PHPUnit_Framework_TestCase {
 
 
 	private function create_REXP($values, $type, $options=array()) {
-		$cn = 'Rserve_REXP_'.$type;
+		$cn = '\\Rserve\\REXP\\'.$type;
 		$r = new $cn();
-		if(is_subclass_of($r, 'Rserve_REXP_Vector')) {
-			if( is_subclass_of($r,'Rserve_REXP_List') AND @$options['named']) {
+		if(is_subclass_of($r, '\\Rserve\\REXP\\Vector')) {
+			if( is_subclass_of($r,'\\Rserve\\REXP\\List') AND @$options['named']) {
 				$r->setValues($values, TRUE);
 			} else {
 				$r->setValues($values);

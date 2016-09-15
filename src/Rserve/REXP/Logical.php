@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
 * R Double vector
 */
-class Rserve_REXP_Logical extends Rserve_REXP_Vector {
+class Logical extends Vector {
 	
 	public function isInteger() { 
 		return true; 

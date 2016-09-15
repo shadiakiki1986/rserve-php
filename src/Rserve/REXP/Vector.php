@@ -13,7 +13,7 @@ namespace Rserve\REXP;
 /**
 * R Double vector
 */
-class Rserve_REXP_Vector extends Rserve_REXP {
+class Vector extends \Rserve\REXP {
 	
 	protected $values;
 	
@@ -85,7 +85,7 @@ class Rserve_REXP_Vector extends Rserve_REXP {
 			$m = ($n > 20) ? 20 : $n;
 			for($i = 0; $i < $m; ++$i) {
 				$v = $this->values[$i];
-				if(is_object($v) AND ($v instanceof Rserve_REXP)) {
+				if(is_object($v) AND ($v instanceof \Rserve\REXP)) {
 					$v = $v->toHTML();
 				} else {
 					$v = $this->valueToHTML($v);
