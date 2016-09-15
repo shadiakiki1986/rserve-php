@@ -3,6 +3,8 @@ Rserve-php
 
 php5 client for Rserve http://www.rforge.net/Rserve/ (a TCP/IP server for R statistical software)
 
+https://travis-ci.org/shadiakiki1986/rserve-php.svg?branch=use-namespaces-and-psr4-autoload
+
 Classes Description 
 -------------------
 

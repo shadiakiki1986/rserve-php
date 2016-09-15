@@ -4,6 +4,7 @@ services:
 - docker
 
 before_install:
+- composer install
 - cp tests/config.php.sample tests/config.php
 - docker run -d -p 6311:6311 wnagele/rserve
 
