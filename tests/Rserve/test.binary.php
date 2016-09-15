@@ -75,7 +75,7 @@ testBinary($cnx, array(1.1, 2.2, 3.3), 'Double'  );
 
 testBinary($cnx, array(TRUE, FALSE, TRUE, NULL), 'Logical');
 
-testBinary($cnx, array('toto', 'titi', 'Lorem ispum', NULL), 'String');
+testBinary($cnx, array('toto', 'titi', 'Lorem ispum', NULL), 'RString');
 
 
 //$rexp = create_REXP(array(1,2,3), 'Integer');
