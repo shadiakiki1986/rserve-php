@@ -44,7 +44,7 @@ class ParserNativeTest extends RserveTestCase {
 				}
 				$f = array_shift($filter);
 				if( !is_callable($f) ) {
-					throw new Exception('Bad filter '.$f.' for '.$key);
+					throw new \Exception('Bad filter '.$f.' for '.$key);
 				}
 				$params = array_merge(array($r[$key]), $filter);
 				$r[$key] = call_user_func_array($f, $params);

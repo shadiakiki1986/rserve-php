@@ -163,24 +163,24 @@ class Connection {
 			$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 		}
 		if( !$socket ) {
-			throw new Rserve_Exception('Unable to create socket ['.socket_strerror(socket_last_error()).']');
+			throw new \Rserve\Exception('Unable to create socket ['.socket_strerror(socket_last_error()).']');
 		}
 		//socket_set_option($socket, SOL_TCP, SO_DEBUG,2);
 		$ok = socket_connect($socket, $this->host, $this->port);
 		if( !$ok ) {
-			throw new Rserve_Exception('Unable to connect ['.socket_strerror(socket_last_error()).']');
+			throw new \Rserve\Exception('Unable to connect ['.socket_strerror(socket_last_error()).']');
 		}
 		$this->socket = $socket;
 		if( !is_null($session_key) ) {
 			// Try to resume session
 			$n = socket_send($socket, $session_key, 32, 0);
 			if($n < 32) {
-				throw new Rserve_Exception('Unable to send session key');
+				throw new \Rserve\Exception('Unable to send session key');
 			}
 			$r = $this->getResponse();
 			if($r['is_error']) {
 				$msg = $this->getErrorMessage($r['error']);
-				throw new Rserve_Exception('invalid session key : '.$msg);
+				throw new \Rserve\Exception('invalid session key : '.$msg);
 			}
 			return;
 		}
@@ -189,11 +189,11 @@ class Connection {
 		$buf = '';
 		$n = socket_recv($socket, $buf, 32, 0);
 		if( $n < 32 || strncmp($buf, 'Rsrv', 4) != 0 ) {
-			throw new Rserve_Exception('Invalid response from server.');
+			throw new \Rserve\Exception('Invalid response from server.');
 		}
 		$rv = substr($buf, 4, 4);
 		if( strcmp($rv, '0103') != 0 ) {
-			throw new Rserve_Exception('Unsupported protocol version.');
+			throw new \Rserve\Exception('Unsupported protocol version.');
 		}
 		$key=null;
 		$this->auth_request = false;
@@ -246,7 +246,7 @@ class Connection {
 	private function parseResponse($buf, $parser) {
 		$type = Helpers::int8($buf, 0);
 		if($type != self::DT_SEXP) { // Check Data type of the packet
-			throw new Rserve_Exception('Unexpected packet Data type (expect DT_SEXP)', $buf);
+			throw new \Rserve\Exception('Unexpected packet Data type (expect DT_SEXP)', $buf);
 		}
 		$i = 4; // + 4 bytes (Data part HEADER)
 		$r = null;
@@ -267,7 +267,7 @@ class Connection {
 				Rserve_Parser::$use_array_object = $old;
 				break;
 			default:
-				throw new Rserve_Exception('Unknown parser');
+				throw new \Rserve\Exception('Unknown parser');
 		}
 		return $r;
 	}
@@ -286,18 +286,18 @@ class Connection {
 		case "plain":
 			break;
 		case "crypt":
-			if(!$salt) throw new Rserve_Exception("Should pass the salt for login");
+			if(!$salt) throw new \Rserve\Exception("Should pass the salt for login");
 			$this->password=crypt($this->password,$salt);
 			break;
 		default:
-			throw new Rserve_Exception( "Could not interpret login method '{$this->auth_method}'" );
+			throw new \Rserve\Exception( "Could not interpret login method '{$this->auth_method}'" );
 		}
 		$data = Helpers::_rserve_make_data(self::DT_STRING, "{$this->username}\n{$this->password}");
 		$r=$this->sendCommand(self::CMD_login, $data );
 		if( !$r['is_error'] ) {
 			return true;
 		}
-		throw new Rserve_Exception( "Could not login" );
+		throw new \Rserve\Exception( "Could not login" );
 	}
 
 	/**
@@ -316,7 +316,7 @@ class Connection {
 		if( !$r['is_error'] ) {
 				return $this->parseResponse($r['contents'], $parser);
 		}
-		throw new Rserve_Exception('unable to evaluate', $r);
+		throw new \Rserve\Exception('unable to evaluate', $r);
 	}
 
 
@@ -324,14 +324,14 @@ class Connection {
 	 * Detach the current session from the current connection.
 	 * Save envirnoment could be attached to another R connection later
 	 * @return array with session_key used to
-	 * @throws Rserve_Exception
+	 * @throws \Rserve\Exception
 	 */
 	public function detachSession() {
 		$r = $this->sendCommand(self::CMD_detachSession, null);
 		if( !$r['is_error'] ) {
 			$x = $r['contents'];
 			if( strlen($x) != (32+3*4) ) {
-				throw new Rserve_Exception('Invalid response to detach');
+				throw new \Rserve\Exception('Invalid response to detach');
 			}
 
 			$port  =  Helpers::int32($x, 4);
@@ -340,7 +340,7 @@ class Connection {
 
 			return $session;
 		}
-		throw new Rserve_Exception('Unable to detach sesssion', $r);
+		throw new \Rserve\Exception('Unable to detach sesssion', $r);
 	}
 
 	/**
@@ -417,7 +417,7 @@ class Connection {
 		if( !$r['is_error'] ) {
 			return $this->parseResponse($r['contents'], $parser);
 		}
-		throw new Rserve_Exception('unable to evaluate', $r);
+		throw new \Rserve\Exception('unable to evaluate', $r);
 	}
 
 	/**
@@ -597,7 +597,7 @@ class Rserve_Session {
  * @author Clément Turbelin
  *
  */
-class Rserve_Exception extends Exception {
+class Exception extends \Exception {
 
 	public $packet;
 
@@ -608,7 +608,7 @@ class Rserve_Exception extends Exception {
 
 }
 
-class Rserve_Parser_Exception extends Rserve_Exception {
+class Rserve_Parser_Exception extends \Rserve\Exception {
 }
 
 \Rserve\Connection::init();

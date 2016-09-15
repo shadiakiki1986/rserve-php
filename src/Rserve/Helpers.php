@@ -110,7 +110,7 @@ class Helpers {
       // [4]  (int) length of the message (bits 0-31)
       // [8]  (int) offset of the data part
       // [12] (int) length of the message (bits 32-63)
-    return mkint32($cmd) . mkint32(strlen($data)) . mkint32(0) . mkint32(0).$data;
+    return self::mkint32($cmd) . self::mkint32(strlen($data)) . self::mkint32(0) . self::mkint32(0).$data;
   }
 
   /**
@@ -129,7 +129,7 @@ class Helpers {
     }
     $len += $pad; 
     $s = chr($type & 255); // [0]  Type
-    $s .= mkint24($len); // [1] Length (24bits)
+    $s .= self::mkint24($len); // [1] Length (24bits)
     $s .= $string; // Data
     if($pad) {
       $s .= str_repeat(chr(0), $pad);

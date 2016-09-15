@@ -2,7 +2,7 @@
 
 namespace Rserve;
 
-class RserveTestCase extends PHPUnit_Framework_TestCase {
+class RserveTestCase extends \PHPUnit_Framework_TestCase {
 
 	private static $cnx;
 

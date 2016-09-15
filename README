@@ -45,9 +45,9 @@ Test suite 1: credential-free
   . port used is the default 6311
   . custom port implemented but not supported in tests yet
 * run tests
-  . phpunit tests\Rserve\ParserNativeTest.php
-  . phpunit tests\Rserve\SessionTest.php
-  . phpunit tests\Rserve\REXPTest.php
+  . vendor/bin/phpunit tests\Rserve\ParserNativeTest.php
+  . vendor/bin/phpunit tests\Rserve\SessionTest.php
+  . vendor/bin/phpunit tests\Rserve\REXPTest.php
 
 You can also run a test in the browser
 * serve the dedicated test file with
@@ -60,7 +60,7 @@ Test suite 2: credential-protected
 * launch your credential-protected Rserve instance
 * define the constants RSERVE_PORT, RSERVE_USER, RSERVE_PASS to config.php (along with RSERVE_HOST)
 * run test
-  . phpunit tests\Rserve\LoginTest.php
+  . vendor/bin/phpunit tests\Rserve\LoginTest.php
 
 Usage
 ---------
