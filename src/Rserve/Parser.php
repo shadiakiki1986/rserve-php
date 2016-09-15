@@ -103,7 +103,7 @@ class Parser {
 
 	/**
 	* Global parameters to parse() function
-	* If true, use Rserve_RNative wrapper instead of native array to handle attributes
+	* If true, use RNative wrapper instead of native array to handle attributes
 	*/
 	public static $use_array_object = false;
 
@@ -311,7 +311,7 @@ class Parser {
 
 		if( self::$use_array_object ) {
 			if( is_array($a) & $attr) {
-				return new Rserve_RNative($a, $attr, $ra);
+				return new RNative($a, $attr, $ra);
 			} else {
 				return $a;
 			}

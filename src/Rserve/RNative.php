@@ -11,7 +11,7 @@ namespace Rserve;
 * php Native array with attributes feature
 * results wrapped in this class could be used as an array ($result['toto']) to get a results and attributes could be accessed using methods
 */
-class Rserve_RNative implements ArrayAccess {
+class RNative implements ArrayAccess {
 
 	/**
 	 * @var array data = R values
@@ -32,7 +32,7 @@ class Rserve_RNative implements ArrayAccess {
 	/**
 	 *
 	 * @param $data values
-	 * @param Rserve_RNative $attributes
+	 * @param RNative $attributes
 	 * @param int $exp_type expression type
 	 */
 	public function __construct($data, $attributes = null, $exp_type = null) {
@@ -66,7 +66,7 @@ class Rserve_RNative implements ArrayAccess {
 
 	/**
 	 * Get the attributes
-	 * @return Rserve_RNative
+	 * @return RNative
 	 */
 	public function getAttributes() {
 		return $this->attr;
