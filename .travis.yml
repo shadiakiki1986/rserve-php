@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+- docker
+
+before_install:
+- cp tests/config.php.sample tests/config.php
+- docker run -d -p 6311:6311 wnagele/rserve
+
+script:
+- composer test
