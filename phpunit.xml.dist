@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- copied from https://github.com/Seldaek/monolog/blob/master/phpunit.xml.dist -->
+<phpunit bootstrap="tests/bootstrap.php" colors="true" verbose="true">
+    <testsuites>
+        <testsuite name="Rserve-php test suite">
+            <directory>tests/Rserve</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/Rserve/</directory>
+        </whitelist>
+    </filter>
+</phpunit>

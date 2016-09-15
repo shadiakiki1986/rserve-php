@@ -3,12 +3,12 @@ Rserve-php
 
 php5 client for Rserve http://www.rforge.net/Rserve/ (a TCP/IP server for R statistical software)
 
-Files Description 
+Classes Description 
 -------------------
 
-* Connection.php : main class Rserve_Connection, you only need to manipulate an instance of this class (evalString method for now)
-* helpers.php : helpers function librairies 
-* Parser.php : Parser class used to Parse Rserve binary packets to php structures (native array or REXP children)
+* Connection : main class, you only need to manipulate an instance of this class (evalString method for now)
+* Helpers.php : helpers function librairies 
+* Parser.php : used to Parse Rserve binary packets to php structures (native array or REXP children)
 * RNative.php : an array wrapper used to catch attributes (experimental, usefull ?)
 * REXP/*.php : R expression classes
 
@@ -32,42 +32,68 @@ Tests
 
 You can run tests using phpunit
 
+
+Test suite 1: credential-free
+
+* launch your credential-free Rserve instance
+  . Can be done with
+
+    docker run -p 6311:6311 wnagele/rserve
+
 * Create a file config.php in the "tests" directory (copy config.php.sample)
-* define the constant RSERVE_HOST with the address of your Rserve server (custom port not supported yet)
+* define the constant RSERVE_HOST with the address of your Rserve server
+  . port used is the default 6311
+  . custom port implemented but not supported in tests yet
 * run tests
-  . phpunit tests\ParserNativeTest.php
-  . phpunit tests\SessionTest.php
-  . phpunit tests\REXPTest.php
+  . phpunit tests\Rserve\ParserNativeTest.php
+  . phpunit tests\Rserve\SessionTest.php
+  . phpunit tests\Rserve\REXPTest.php
+
+You can also run a test in the browser
+* serve the dedicated test file with
+
+  php -S localhost:1681 -t tests/Rserve/index.php
+
+
+Test suite 2: credential-protected
+
+* launch your credential-protected Rserve instance
 * define the constants RSERVE_PORT, RSERVE_USER, RSERVE_PASS to config.php (along with RSERVE_HOST)
 * run test
-  . phpunit tests\LoginTest.php
+  . phpunit tests\Rserve\LoginTest.php
 
 Usage
 ---------
 
 The use of the library is simple
 
-1. create an instance of Rserve_Connection
+1. Install using composer
 
-  $cnx = new Rserve_Connection('myserverhost');
+  composer require cturbelin/rserve-php
 
-2. Send R commands and get the results as Php array
+2. create an instance of \Rserve\Connection
+
+  $cnx = new \Rserve\Connection('myserverhost');
+
+3. Send R commands and get the results as Php array
 
   $result = $cnx->evalString('x ="Hello world !"; x');
   
   // Get results as a REXP object tree 
-  $result = $cnx->evalString('x="Toto is my Hero"', Rserve_Connection::PARSER_REXP);
+  $result = $cnx->evalString('x="Toto is my Hero"', \Rserve\Connection::PARSER_REXP);
   
   // Get as wrapped native array (object with array behaviour and attributes)
-  $result = $cnx->evalString('x="Toto is my Hero"', Rserve_Connection::PARSER_NATIVE_WRAPPED);
+  $result = $cnx->evalString('x="Toto is my Hero"', \Rserve\Connection::PARSER_NATIVE_WRAPPED);
  
 This will produce a php array containing R results (using native array parser). 
-Others parsers could be used by using $parser parameters (@see Rserve_Connection)
+Others parsers could be used by using $parser parameters (@see \Rserve\Connection)
 
 Using Login Authorization
 -------------------------
+
 Usage is the same as the vanilla usage, except for the constructor
-   $cnx = new Rserve_Connection('myserverhost',serverport,array('username'=>username,'password'=>password))
+
+   $cnx = new \Rserve\Connection('myserverhost',serverport,array('username'=>username,'password'=>password))
 
 Async Mode
 -----------
